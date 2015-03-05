@@ -1036,14 +1036,16 @@ body {
   font-size: 20px; }
 
 .reveal .overlay.overlay-help .viewport .viewport-inner table {
-  border: 1px solid #fff;
+  /** border: 1px solid #fff; **/
   border-collapse: collapse;
-  font-size: 14px; }
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: auto; }
 
 .reveal .overlay.overlay-help .viewport .viewport-inner table th, .reveal .overlay.overlay-help .viewport .viewport-inner table td {
   width: 200px;
   padding: 10px;
-  border: 1px solid #fff;
+  /** border: 1px solid #fff; **/
   vertical-align: middle; }
 
 .reveal .overlay.overlay-help .viewport .viewport-inner table th {

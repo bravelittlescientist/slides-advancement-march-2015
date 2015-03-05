@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Eugenia Advancement</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -29,9 +29,6 @@
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
 	</head>
 
 	<body>
@@ -42,38 +39,185 @@
 			<div class="slides">
                 <section style="text-align: left;">
                 <h4>Measuring and Tuning Performance of<br/>Virtual Environment Servers:<br/>Experiments With OpenSimulator</h4>
-					<p>
-                    Eugenia Gabrielova<br/>University of California, Irvine
-                    </p>
-                    <img height="64" src="img/mondego-banner.png"><img height="64" src="img/isr.jpeg" style="margin-left: 0.5em;">
+				<p>
+                Eugenia Gabrielova<br/>University of California, Irvine
+                </p>
+                <img height="64" src="img/mondego-banner.png"><img height="64" src="img/isr.jpeg" style="margin-left: 0.5em;">
 				</section>
-
+    
                 <section>
-                    <section>
-                        <p>
-                            S for Speaker View
-                            Nested placeholder - SPACE or down
-                        </p>
-                    </section>
-                    <section>
-                        Level 2
-                    </section>
-                    <section>
-                        I have a picture!
-                    </section>
+                    <h4>Agenda</h4>
+                    <ol>
+                        <li><b>Motivation and Background</b></li>
+                        <li>Experiments with OpenSimulator</li>
+                        <li>Future Direction and Conclusions</li>
+                    </ol>
                 </section>
 
                 <section>
-                    <h4>Citation</h4>
-                    <blockquote>test</blockquote>
+                    <h4>Virtual environments are online platforms where people can work, play, socialize, and build.</h4>
+                    <div style="display: inline-block;"><img height="250" src="img/lopes2013conference.png"></div>
+                    <div style="display: inline-block;"><img height="250" src="img/biozone.jpg"></div><br/>
+                    <div style="display: inline-block;"><img height="250" src="img/grasshopper.jpg"></div>
+                    <div style="display: inline-block;"><img height="250" src="img/oculus.jpg"></div>
+                    <div style="display: inline-block;"><img height="250" src="img/gw2.jpg"></div>
                 </section>
 
                 <section>
-                    <h3>Conclusions</h3>
+                    <h4>Why research virtual environments?</h4>
+                    <blockquote>Despite growing demand, existing systems do not support vast, seamless virtual environments.</blockquote>
+                </section>
+
+                <section>
+                    <h4>Scope: performance of <i>metaverses</i>, a category of </br>virtual environment systems</h4>
                     <ul>
-                        <li>Conclusion 1</li>
-                        <li>Conclusion 2</li>
-                        <li>Let's go <a href="#/1/2">back!</a></li>
+                        <li>3D virtual environment with many simultaneous users.</li>
+                        <li>Environment accessed through client viewer application.</li>
+                        <li>Metaverse content can be built, imported, and modified.</li>
+                        <li>User actions are immediately reflected in environment.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Many factors impact virtual environment performance.</h4>
+                    <ul>
+                        <li>Unpredictable user behavior</li>
+                        <li>Real-time environment state updates</li>
+                        <li>Underlying hardware and network limitations</li>
+                        <li>Heterogeneous client viewer implementations</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <blockquote>RQ-1. How can virtual environments mitigate unexpected behavior from heterogeneous clients?</blockquote>
+                    <blockquote>RQ-2. Which virtual environment content has the highest performance impact?</blockquote>
+                </section>
+
+                <section>
+                    <h4>Contribution of this work</h4>
+                    <ul>
+                        <li>Measures impact of an ad hoc performance optimization in OpenSimulator.</li>
+                        <li>Systematic study of user login performance impact, previously unmeasured.</li>
+                        <li>Motivates the study of automated techniques for virtual environment performance measurement.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Agenda</h4>
+                    <ol>
+                        <li>Motivation and Background</li>
+                        <li><b>Experiments with OpenSimulator</b></li>
+                        <li>Future Direction and Conclusions</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h4>OpenSimulator is an open source 3D virtual environment server.</h4>
+                    <div style="display: inline-block;"><img height="300" src="img/lopes2013conference.png"></div>
+                    <div style="display: inline-block;"><img height="300" src="img/robust.png"></div>
+                </section>
+
+                <section>
+                <h4>Experiment 1: Exploring Client Behavior</h4>
+                <b>Goal</b>: Use synthetic client bots to systematically meausure performance impact of OpenSim optimizations.  
+                <div style="display: inline-block;"><img height="300" src="img/lopes2013conference.png"></div>
+                </section>
+
+                <section>
+                <h4>Experiment 1: Exploring Client Behavior</h4>
+                
+                <div style="display: inline-block; margin-right: 1em; vertical-align: middle;">
+                    <img width="250" src="img/experiment.png">
+                </div>
+                <div style="display: inline-block; margin-right: 1em; vertical-align: middle;">
+                    <img width="250" style="margin: 0; padding: 0;" src="img/packetfull1.png"><br/>
+                    <img width="250" style="margin: 0; padding: 0;" src="img/packetfull2.png"><br/>
+                    <img width="250" style="margin: 0; padding: 0;" src="img/packetsfull3.png">
+                </div>
+                <div style="display: inline-block; vertical-align: middle;">
+                    <img width="250" src="img/impact_bots_sitting.png">
+                </div>
+                </section>
+
+                <section>
+                <h4>Experiment 1: Exploring Client Behavior - Findings</h4>
+                <b>Filtering</b> insignificant updates from clients <b>decreases OpenSim server load by at least 24%</b>, returning performance to baseline levels.<br/>
+                <div style="display: inline-block;"><img height="200" src="img/CPUBig.png"></div><br/>
+                <div style="display: inline-block;"><img height="200" src="img/ReceivedBig.png"></div>
+                <div style="display: inline-block;"><img height="200" src="img/ProcessedBig.png"></div>
+                <div style="display: inline-block;"><img height="200" src="img/SentBigger.png"></div>
+                </section>
+
+                <section>
+                <h4>Experiment 2: Exploring Performance Impact <br/>of User Login</h4>
+                <b>Goal:</b> Understanding why the entrance of a user into a virtual environment is such a heavy process.
+                </section>
+
+                <section>
+                <h4>Experiment 2: Exploring Performance Impact <br/>of User Login</h4>
+                <table>
+                    <tr>
+                        <td colspan="2" style="text-align: right; vertical-align: middle;">Stage 1:</td>
+                        <td colspan="3" style="text-align: left;"><img height="150" src="img/simulation-server-local-inventory.png"></td>
+                    </tr>
+                        <td colspan="2" style="text-align: right; vertical-align: middle;">Stage 2:</td>
+                        <td colspan="3" style="text-align: left;"><img height="150" src="img/simulation-server-dedicated-inventory.png"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"><img height="150" src="img/ruth-char.png"></td>
+                        <td style="text-align: center;"><img height="150" src="img/alien-char.png"></td>
+                        <td style="text-align: center;"><img height="150" src="img/inventories.png"></td>
+                        <td style="text-align: center;"><img height="150" src="img/basic-scene_001.png"></td>
+                        <td style="text-align: center;"><img height="150" src="img/reticulation.png"></td>
+                    </tr>
+                </table>
+                </section>
+
+                <section>
+                <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Findings</h4>
+                Moving inventory retrieval to dedicated server reduced baseline performance during login by 14%. For users with heavy inventory, server loads decreased by 63.9% - 88.9%.<br/>
+                <div style="display: inline-block;"><img height="300" src="img/organized_by_inventory.png"></div>             
+                </section>
+
+                <section>
+                <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Findings</h4>
+                Moving inventory retrieval to dedicated server reduced <b>baseline</b> login performance by <b>14%</b>.<br/>For users with <b>heavy inventories</b>, server loads decreased by <b>63.9% - 88.9%.</b><br/>
+                <div style="display: inline-block;"><img height="200" src="img/organized_by_inventory_zoom.png"></div>
+                <div style="display: inline-block;"><img height="200" src="img/comparing-heavy-inv-final-yay.png"></div>               
+                </section>
+
+                <section>
+                    <h4>Limitations</h4>
+                    <ul>
+                        <li>Heavy manual overhead</li>
+                        <li>Login study limited to single user</li>
+                        <li>Synthetic client bot behavior not comparable to real behavior</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h4>Contribution of this work</h4>
+                    <ul>
+                        <li>Virtual environment server must mitigate performance; clients not trustworthy.</li>
+                        <li>We demonstrate value of offloading heavy asset retrieval during user entrance into a virtual environment.</li>
+                        <li>Novel techniques needed to overcome the heavy manual overhead in virtual environment experimentation.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Agenda</h4>
+                    <ol>
+                        <li>Motivation and Background</li>
+                        <li>Experiments with OpenSimulator</li>
+                        <li><b>Future Direction and Conclusions</b></li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h4>Conclusions</h4>
+                    <ul>
+                        <li>Automated techniques needed to address manual overhead of virtual environment performance measurement.</li>
+                        <li>Virtual environment servers must mitigate performance issues, rather than relying on client implementations or good user behavior.</li>
                     </ul>
                 </section>
 			</div>
