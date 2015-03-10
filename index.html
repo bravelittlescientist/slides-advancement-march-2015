@@ -1,57 +1,48 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-		<title>Eugenia Advancement</title>
+        <title>Eugenia Advancement</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+        <meta name="description" content="Measuring and Tuning Performance of<br/>Virtual Environment Servers:<br/>Experiments With OpenSimulator">
+        <meta name="author" content="Eugenia Gabrielova">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/blood.css" id="theme">
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/blood.css" id="theme">
 
-		<!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
 
-	</head>
+    </head>
 
-	<body>
+    <body>
 
-		<div class="reveal">
+        <div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
                 <section style="text-align: left;">
                 <h4>Measuring and Tuning Performance of<br/>Virtual Environment Servers:<br/>Experiments With OpenSimulator</h4>
-				<p>
+                <p>
                 Eugenia Gabrielova<br/>University of California, Irvine
                 </p>
                 <img height="64" src="img/mondego-banner.png"><img height="64" src="img/isr.jpeg" style="margin-left: 0.5em;">
-				</section>
-    
-                <section>
-                    <h4>Agenda</h4>
-                    <ol>
-                        <li><b>Motivation and Background</b></li>
-                        <li>Experiments with OpenSimulator</li>
-                        <li>Future Direction and Conclusions</li>
-                    </ol>
                 </section>
 
                 <section>
@@ -69,46 +60,40 @@
                 </section>
 
                 <section>
-                    <h4>Scope: performance of <i>metaverses</i>, a category of </br>virtual environment systems</h4>
+                    <h4>Scope: multi-user real-time virtual environments</h4>
                     <ul>
                         <li>3D virtual environment with many simultaneous users.</li>
-                        <li>Environment accessed through client viewer application.</li>
-                        <li>Metaverse content can be built, imported, and modified.</li>
-                        <li>User actions are immediately reflected in environment.</li>
+                        <li>Environment is accessed through client viewer application.</li>
+                        <li>User actions are immediately reflected in the environment and distributed to other users.</li>
                     </ul>
                 </section>
 
                 <section>
                     <h4>Many factors impact virtual environment performance.</h4>
                     <ul>
-                        <li>Unpredictable user behavior</li>
-                        <li>Real-time environment state updates</li>
+                        <li>Real-time state updates</li>
                         <li>Underlying hardware and network limitations</li>
                         <li>Heterogeneous client viewer implementations</li>
+                        <li>Unpredictable user behavior</li>
                     </ul>
                 </section>
 
                 <section>
-                    <blockquote>RQ-1. How can virtual environments mitigate unexpected behavior from heterogeneous clients?</blockquote>
-                    <blockquote>RQ-2. Which virtual environment content has the highest performance impact?</blockquote>
+                    <blockquote>RQ-1. How can virtual environments mitigate unreasonable behavior from clients?</blockquote>
+                    <blockquote>RQ-2. What part of the login procedure has the highest impact on server performance upon a user joining the environment?</blockquote>
                 </section>
 
                 <section>
                     <h4>Contribution of this work</h4>
                     <ul>
-                        <li>Measures impact of an ad hoc performance optimization in OpenSimulator.</li>
-                        <li>Systematic study of user login performance impact, previously unmeasured.</li>
+                        <li>Experimental design for systematic performance studies of virtual environment servers</li>
+                        <li>Systematic study of unreasonable client behavior</li>
+                        <li>Systematic study of server performance impact upon user login.</li>
+                        <li>In practice, people don't have time to systematically assess performance</li>
+                        <li>Identifies situations in which clients behave unreasonably, and shows how to mitigate them</li>
+                        <li>In a large complex system, small code paths have huge impact</li>
                         <li>Motivates the study of automated techniques for virtual environment performance measurement.</li>
                     </ul>
-                </section>
-
-                <section>
-                    <h4>Agenda</h4>
-                    <ol>
-                        <li>Motivation and Background</li>
-                        <li><b>Experiments with OpenSimulator</b></li>
-                        <li>Future Direction and Conclusions</li>
-                    </ol>
                 </section>
 
                 <section>
@@ -118,9 +103,34 @@
                 </section>
 
                 <section>
-                <h4>Experiment 1: Exploring Client Behavior</h4>
-                <b>Goal</b>: Use synthetic client bots to systematically meausure performance impact of OpenSim optimizations.  
-                <div style="display: inline-block;"><img height="300" src="img/lopes2013conference.png"></div>
+                    What happens in the server the a user takes an action?
+                </section>
+                
+                <section>
+                    <h4>Agenda</h4>
+                    <ul>
+                        <li><b>Experiment 1: Systematic study of unreasonable client behavior</b></li>
+                        <li>Experiment 2: Systematic study of server performance impact upon user login.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Experiment 1: Unreasonable client behavior in a virtual conference</h4>
+                    <div style="display: inline-block;"><img height="300" src="img/lopes2013conference.png"></div>
+                </section>
+
+                <section>
+                    <h4>Experiment 1: Unreasonable client behavior in a virtual conference</h4>
+                    Logged in users asked to sit down, unreasonable client performance due to insignificant updates, ad hoc optimizations
+                </section>
+                
+                <section>
+                <h4>Experiment 1: Experiment design</h4>
+                <ul>
+                    <li>Conference sceneario: users enter scene and sit down</li>
+                    <li>Drill down to performance impact of ad hoc performance optimization</li>
+                    <li>Use synthetic client bots framework</li>
+                    <li>Interesting configurations: baseline (stable, no filters), unfiltered (unstable, no filters), filtered (stable, filters)</li>
                 </section>
 
                 <section>
@@ -146,6 +156,14 @@
                 <div style="display: inline-block;"><img height="200" src="img/ReceivedBig.png"></div>
                 <div style="display: inline-block;"><img height="200" src="img/ProcessedBig.png"></div>
                 <div style="display: inline-block;"><img height="200" src="img/SentBigger.png"></div>
+                </section>
+
+               <section>
+                    <h4>Agenda</h4>
+                    <ul>
+                        <li>Experiment 1: Systematic study of unreasonable client behavior</b></li>
+                        <li><b>Experiment 2: Systematic study of server performance impact upon user login.</b></li>
+                    </ul>
                 </section>
 
                 <section>
@@ -187,69 +205,46 @@
                 </section>
 
                 <section>
-                    <h4>Limitations</h4>
-                    <ul>
-                        <li>Heavy manual overhead</li>
-                        <li>Login study limited to single user</li>
-                        <li>Synthetic client bot behavior not comparable to real behavior</li>
-                    </ul>
-                </section>
-                
-                <section>
-                    <h4>Contribution of this work</h4>
-                    <ul>
-                        <li>Virtual environment server must mitigate performance; clients not trustworthy.</li>
-                        <li>We demonstrate value of offloading heavy asset retrieval during user entrance into a virtual environment.</li>
-                        <li>Novel techniques needed to overcome the heavy manual overhead in virtual environment experimentation.</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h4>Agenda</h4>
-                    <ol>
-                        <li>Motivation and Background</li>
-                        <li>Experiments with OpenSimulator</li>
-                        <li><b>Future Direction and Conclusions</b></li>
-                    </ol>
-                </section>
+                    <h4>Future Work</h4>
+                </section>                
 
                 <section>
                     <h4>Conclusions</h4>
                     <ul>
                         <li>Automated techniques needed to address manual overhead of virtual environment performance measurement.</li>
-                        <li>Virtual environment servers must mitigate performance issues, rather than relying on client implementations or good user behavior.</li>
+                        <li>Virtual environment servers must mitigate performance issues that result from unreasonable client behavior.</li>
                     </ul>
                 </section>
-			</div>
+            </div>
 
-		</div>
+        </div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
-		<script>
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+        <script>
 
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-				// Optional reveal.js plugins
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
-			});
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true }
+                ]
+            });
 
-		</script>
+        </script>
 
-	</body>
+    </body>
 </html>
