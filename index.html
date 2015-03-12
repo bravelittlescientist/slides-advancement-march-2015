@@ -87,81 +87,148 @@
                     <h4>Contribution of this work</h4>
                     <ul>
                         <li>Experimental design for systematic performance studies of virtual environment servers</li>
-                        <li>Systematic study of unreasonable client behavior</li>
-                        <li>Systematic study of server performance impact upon user login.</li>
-                        <li>In practice, people don't have time to systematically assess performance</li>
-                        <li>Identifies situations in which clients behave unreasonably, and shows how to mitigate them</li>
-                        <li>In a large complex system, small code paths have huge impact</li>
+                        <li>Identifies situations in which virtual environment clients behave unreasonably, and shows how to mitigate them</li>
                         <li>Motivates the study of automated techniques for virtual environment performance measurement.</li>
+
+                        <aside class="notes">
+						    In practice, systematic assessment isn't possible. 
+                            In large complex systems, critical code paths have large performance impact.
+					    </aside>
+                    </ul>
+                </section>
+
+               <section>
+                    <h4>Agenda</h4>
+                    <ul>
+                        <li><b>OpenSimulator, our 3D virtual environment research platform</b></li>
+                        <li>Experiment 1: Systematic study of unreasonable client behavior</li>
+                        <li>Experiment 2: Systematic study of server performance impact upon user login.</li>
                     </ul>
                 </section>
 
                 <section>
                     <h4>OpenSimulator is an open source 3D virtual environment server.</h4>
                     <div style="display: inline-block;"><img height="300" src="img/lopes2013conference.png"></div>
-                    <div style="display: inline-block;"><img height="300" src="img/robust.png"></div>
                 </section>
 
                 <section>
-                    What happens in the server the a user takes an action?
+                    <h4>OpenSimulator Features</h4>
+                    <ul>
+                        <li>Online multi-user 3D simulation servers</li>
+                        <li>3D virtual environments of variable sizes</li>
+                        <li>Support for multiple clients and protocols</li>
+                        <li>Data management and login services for simulation servers</li>
+                        <li>Real-time physics simulation</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>OpenSimulator Client Updates</h4> 
+                    <p>Clients send streams of updates to simulation server.<p>
+                    <div style="display: inline-block; margin-right: 1em; vertical-align: middle;">
+                        <img width="500" style="margin: 0; padding: 0;" src="img/packetfull1.png">
+                    </div>
+                </section>
+
+                <section>
+                    <h4>OpenSimulator Client Updates</h4> 
+                    <p>Clients send streams of updates to simulation server.<p>
+                    <div style="display: inline-block; margin-right: 1em; vertical-align: middle;">
+                        <img width="500" style="margin: 0; padding: 0;" src="img/packetfull2.png">
+                    </div>
+                </section>
+        
+                <section>
+                    <h4>OpenSimulator Client Updates</h4> 
+                    <p>Clients send streams of updates to simulation server.<p>
+                    <div style="display: inline-block; margin-right: 1em; vertical-align: middle;">
+                        <img width="500" style="margin: 0; padding: 0;" src="img/packetsfull3.png">
+                    </div>
+                </section>
+
+                <section>
+                    <h4>OpenSimulator Client Update - Example Steps</h4>
+                    <ol>
+                        <li>User sits down.</li>
+                        <li>User's client viewer sends updated position to <br/>simulation server.</li>
+                        <li>Server processes update packet.</li>
+                        <li>Server sends update to other users.</li>
+                    </ol>
                 </section>
                 
                 <section>
                     <h4>Agenda</h4>
                     <ul>
+                        <li>OpenSimulator, our 3D virtual environment research platform</li>
                         <li><b>Experiment 1: Systematic study of unreasonable client behavior</b></li>
                         <li>Experiment 2: Systematic study of server performance impact upon user login.</li>
                     </ul>
                 </section>
 
                 <section>
-                    <h4>Experiment 1: Unreasonable client behavior in a virtual conference</h4>
-                    <div style="display: inline-block;"><img height="300" src="img/lopes2013conference.png"></div>
+                    <h4>Experiment 1 Motivation: Unreasonable client behavior in a virtual conference setting</h4>
+                    <p><b>Observation:</b> Server load increased when certain clients entered virtual environment.</p>
                 </section>
 
                 <section>
-                    <h4>Experiment 1: Unreasonable client behavior in a virtual conference</h4>
-                    Logged in users asked to sit down, unreasonable client performance due to insignificant updates, ad hoc optimizations
+                    <h4>Experiment 1 Motivation: Unreasonable client behavior in a virtual conference setting</h4>
+                    <p><b>Cause:</b> Clients sent update streams to server with tiny position changes.</p>
+                    <img height="100" src="img/unstable_icon.png"><img height="100" src="img/unstable_example.png">
+                    <aside class="notes">
+					    At best, floating point issues in client implementation.
+                        At worst, malicious client.
+                        Client viewers are separate projects - can't control them.
+					</aside>         
                 </section>
-                
+
+
                 <section>
-                <h4>Experiment 1: Experiment design</h4>
-                <ul>
-                    <li>Conference sceneario: users enter scene and sit down</li>
-                    <li>Drill down to performance impact of ad hoc performance optimization</li>
-                    <li>Use synthetic client bots framework</li>
-                    <li>Interesting configurations: baseline (stable, no filters), unfiltered (unstable, no filters), filtered (stable, filters)</li>
+                    <h4>Experiment 1 Motivation: Unreasonable client behavior in a virtual conference setting</h4>
+                    <p><b>Engineering Solution:</b> Discard agent update packets with insignificant position update values.</p>
+                    <img height="100" src="img/unstable_icon.png"><img height="100" src="img/exp_1_motivation_filter.png">
                 </section>
 
                 <section>
-                <h4>Experiment 1: Exploring Client Behavior</h4>
-                
-                <div style="display: inline-block; margin-right: 1em; vertical-align: middle;">
-                    <img width="250" src="img/experiment.png">
-                </div>
-                <div style="display: inline-block; margin-right: 1em; vertical-align: middle;">
-                    <img width="250" style="margin: 0; padding: 0;" src="img/packetfull1.png"><br/>
-                    <img width="250" style="margin: 0; padding: 0;" src="img/packetfull2.png"><br/>
-                    <img width="250" style="margin: 0; padding: 0;" src="img/packetsfull3.png">
-                </div>
-                <div style="display: inline-block; vertical-align: middle;">
-                    <img width="250" src="img/impact_bots_sitting.png">
-                </div>
+                    <h4>Experiment 1 Motivation: Unreasonable client behavior in a virtual conference setting</h4>
+                    <blockquote>RQ-1. How can virtual environments mitigate unreasonable behavior from clients?</blockquote>
+                </section>
+
+                <section>
+                <h4>Experiment 1: Experiment Design</h4>
+                <ol>
+                    <li><b>To simulate conference,</b> users enter scene and sit down</li>
+                    <li><b>To control client behavior,</b> used synthetic client bots</li>
+                    <li><b>To control outside factors,</b> built barebones environment</li>
+                    <li><b>To measure performance impact,</b> measured steady-state server load</li>
+                </ol>
+                </section>
+
+                <section>
+                <h4>Experiment 1: Experiment Design</h4>
+                <img height="300" src="img/loadtest.jpg"><img height="300" src="img/impact_bots_sitting.png">
                 </section>
 
                 <section>
                 <h4>Experiment 1: Exploring Client Behavior - Findings</h4>
-                <b>Filtering</b> insignificant updates from clients <b>decreases OpenSim server load by at least 24%</b>, returning performance to baseline levels.<br/>
-                <div style="display: inline-block;"><img height="200" src="img/CPUBig.png"></div><br/>
-                <div style="display: inline-block;"><img height="200" src="img/ReceivedBig.png"></div>
-                <div style="display: inline-block;"><img height="200" src="img/ProcessedBig.png"></div>
-                <div style="display: inline-block;"><img height="200" src="img/SentBigger.png"></div>
+                <p>Discarding insignificant updates decreases OpenSim server load by at least 24%.</p>
+                <!-- TODO show network pictures... -->
+                <div style="display: inline-block;"><img height="400" src="img/annotated_res.png"></div><br/>
+                </section>
+
+                <section>
+                <h4>Experiment 1: Exploring Client Behavior - Findings</h4>
+                <ul>
+                    <li>Behavior in our experiments confirms that filtering optimization worked.</li>
+                    <li>Initial agent processing code is a critical code path.</li>
+                    <li>Shows one strategy by which virtual environment servers can mitigate unreasonable client behavior.</li>
+                </ul>
                 </section>
 
                <section>
                     <h4>Agenda</h4>
                     <ul>
-                        <li>Experiment 1: Systematic study of unreasonable client behavior</b></li>
+                        <li>OpenSimulator, our 3D virtual environment research platform</li>
+                        <li>Experiment 1: Systematic study of unreasonable client behavior</li>
                         <li><b>Experiment 2: Systematic study of server performance impact upon user login.</b></li>
                     </ul>
                 </section>
@@ -169,50 +236,87 @@
                 <section>
                 <h4>Experiment 2: Exploring Performance Impact <br/>of User Login</h4>
                 <b>Goal:</b> Understanding why the entrance of a user into a virtual environment is such a heavy process.
+                <img height="300" src="img/loadspike.png">
                 </section>
 
                 <section>
-                <h4>Experiment 2: Exploring Performance Impact <br/>of User Login</h4>
-                <table>
-                    <tr>
-                        <td colspan="2" style="text-align: right; vertical-align: middle;">Stage 1:</td>
-                        <td colspan="3" style="text-align: left;"><img height="150" src="img/simulation-server-local-inventory.png"></td>
-                    </tr>
-                        <td colspan="2" style="text-align: right; vertical-align: middle;">Stage 2:</td>
-                        <td colspan="3" style="text-align: left;"><img height="150" src="img/simulation-server-dedicated-inventory.png"></td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: center;"><img height="150" src="img/ruth-char.png"></td>
-                        <td style="text-align: center;"><img height="150" src="img/alien-char.png"></td>
-                        <td style="text-align: center;"><img height="150" src="img/inventories.png"></td>
-                        <td style="text-align: center;"><img height="150" src="img/basic-scene_001.png"></td>
-                        <td style="text-align: center;"><img height="150" src="img/reticulation.png"></td>
-                    </tr>
-                </table>
+                <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Login Steps</h4>
+                <ol>
+                    <li>User enters environment through client viewer.</li>
+                    <li>Client requests permissions, scene and inventory from server</li>
+                    <li>Server checks permissions, then sends scene and inventory to client.</li>
+                    <li>Client viewer loads scene and inventory.</li>
+                </ol>
+                </section>
+
+                <section>
+                <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Experiment Design</h4>
+                <ul>
+                    <li>Three Factors: Inventory Size, Avatar Complexity, Scene Complexity</li>
+                    <li>Measure server load for 10 minutes after user login.</li>
+                    <li>Clear cache - user in each experiment enters a "new" scene</li>
+                    <li>Control noise - measure load of a single user</li>
+                </ul>
+                </section>
+
+                <section>              
+                    <h4>Experiment 2: Performance Factors - Inventories</h4>
+                    <img height="300" src="img/inventories.png">
+                </section>
+
+                <section>              
+                    <h4>Experiment 2: Performance Factors - Avatars</h4>
+                    <img height="300" src="img/ruth-char.png"><img height="300" src="img/alien-char.png">
+                </section>
+
+                <section>              
+                    <h4>Experiment 2: Performance Factors - Scenes</h4>
+                    <img height="200" src="img/basic-scene_001.png"><img height="200" src="img/reticulation.png">
+                </section>
+
+                <section>              
+                    <h4>Experiment 2: Experiment Setup</h4>
+                    <img height="300" src="img/simulation-server-local-inventory.png">
+                </section>
+
+                <section>
+                    <h4>Experiment 2: Inventory size had a significant impact on server load.</h4>
+                    
+                </section>
+
+                <section>              
+                    <h4>Experiment 2: User Login Performance - Adding Dedicated Server</h4>
+                    <p>
+                    <img height="300" src="img/simulation-server-dedicated-inventory.png">
+                </section>                          
+
+                <section>
+                <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Findings</h4>
+                Moving inventory retrieval to dedicated server reduced baseline performance during login by 14%.<br/>
+                <img height="300" src="img/organized_by_inventory_light.png">            
                 </section>
 
                 <section>
                 <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Findings</h4>
-                Moving inventory retrieval to dedicated server reduced baseline performance during login by 14%. For users with heavy inventory, server loads decreased by 63.9% - 88.9%.<br/>
-                <div style="display: inline-block;"><img height="300" src="img/organized_by_inventory.png"></div>             
+                For users with heavy inventory, server loads decreased by 63.9% - 88.9% after dedicated server was added.<br/>
+                <img height="300" src="img/organized_by_inventory_heavy.png">             
                 </section>
 
                 <section>
-                <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Findings</h4>
-                Moving inventory retrieval to dedicated server reduced <b>baseline</b> login performance by <b>14%</b>.<br/>For users with <b>heavy inventories</b>, server loads decreased by <b>63.9% - 88.9%.</b><br/>
-                <div style="display: inline-block;"><img height="200" src="img/organized_by_inventory_zoom.png"></div>
-                <div style="display: inline-block;"><img height="200" src="img/comparing-heavy-inv-final-yay.png"></div>               
+                <h4>Experiment 2: Exploring Performance Impact of User Login - Findings</h4>
+                <ul>
+                    <li>Manual overhead of realistic virtual environment experiments is heavy.</li>
+                    <li>One client configuration exhibited unreasonable behavior during some logins.</li>
+                </ul>
                 </section>
 
-                <section>
-                    <h4>Future Work</h4>
-                </section>                
 
                 <section>
                     <h4>Conclusions</h4>
                     <ul>
-                        <li>Automated techniques needed to address manual overhead of virtual environment performance measurement.</li>
-                        <li>Virtual environment servers must mitigate performance issues that result from unreasonable client behavior.</li>
+                        <li>Experiment design for the study of real-time multi-user virtual environments isn't easy.</li>
+                        <li>Critical code paths in virtual environments can have significant performance impact.</li>
+                        <li>Automated techniques needed to address manual overhead of virtual environment experiments.</li>
                     </ul>
                 </section>
             </div>
