@@ -40,19 +40,10 @@
                 <section style="text-align: left;">
                 <h4>Measuring and Tuning Performance of<br/>Virtual Environment Servers:<br/>Experiments With OpenSimulator</h4>
                 <p>
-                Eugenia Gabrielova<br/>University of California, Irvine
+                Eugenia Gabrielova<br/>Advancement Talk, 3.13.15<br/>University of California, Irvine
                 </p>
                 <img height="64" src="img/mondego-banner.png"><img height="64" src="img/isr.jpeg" style="margin-left: 0.5em;">
                 </section>
-
-                TODO Advancement Talk
-                TODO noise elimination - get to the core of things
-                TODO slide that explains steps
-                TODO insignificant updates eventually eliminated
-                TODO internal monitoring framework
-                TODO packet graphs
-                As part of the statistics interval, T-tests
-         
 
                 <section>
                     <h4>Virtual environments are online platforms where people can work, play, socialize, and build.</h4>
@@ -88,19 +79,27 @@
                 </section>
 
                 <section>
-                    <blockquote>RQ-1. How can virtual environments mitigate unreasonable behavior from clients?</blockquote>
-                    <blockquote>RQ-2. What part of the login procedure has the highest impact on server performance upon a user joining the environment?</blockquote>
+                    <h4>Research Motivation</h4>
+                        <blockquote>What techniques can be used to improve performance of virtual environment servers?</blockquote>
+                        <p class="fragment zoom-in" style="text-align: left;">Q1. How can virtual environments mitigate unreasonable behavior from clients?</p>
+                        <p class="fragment zoom-in" style="text-align: left;">Q2. What part of the login procedure has the highest impact on server performance upon a user joining the environment?</p>
+                    </ul>
+
+                     <aside class="notes">
+                        zoom in on concrete questions of performance<br>
+                        serve more users for the same amount of cycles
+					 </aside>
                 </section>
 
                 <section>
-                    <h4>Contribution of this work</h4>
+                    <h4>Contribution</h4>
                     <ul>
-                        <li>Experimental design for systematic performance studies of virtual environment servers</li>
-                        <li>Identifies situations in which virtual environment clients behave unreasonably, and shows how to mitigate them</li>
+                        <li>Experimental design for systematic performance studies of virtual environment servers.</li>
+                        <li>Identifies situations in which virtual environment clients behave unreasonably, and shows how to mitigate them.</li>
                         <li>Motivates the study of automated techniques for virtual environment performance measurement.</li>
 
                         <aside class="notes">
-						    In practice, systematic assessment isn't possible. 
+						    In practice, systematic assessment isn't possible.<br>
                             In large complex systems, critical code paths have large performance impact.
 					    </aside>
                     </ul>
@@ -109,9 +108,10 @@
                <section>
                     <h4>Agenda</h4>
                     <ul>
-                        <li><b>OpenSimulator, our 3D virtual environment research platform</b></li>
+                        <li><b>OpenSimulator, our platform for 3D virtual environment research</b></li>
                         <li>Experiment 1: Systematic study of unreasonable client behavior</li>
                         <li>Experiment 2: Systematic study of server performance impact upon user login.</li>
+                        <li>Next Steps and Conclusion: Future research directions for improving performance of virtual environment systems</li>
                     </ul>
                 </section>
 
@@ -122,6 +122,7 @@
 
                 <section>
                     <h4>OpenSimulator Features</h4>
+                    <p><i>[OpenSimulator, 2015, http://opensimulator.org/]</i></p>
                     <ul>
                         <li>Online multi-user 3D simulation servers</li>
                         <li>3D virtual environments of variable sizes</li>
@@ -168,9 +169,10 @@
                 <section>
                     <h4>Agenda</h4>
                     <ul>
-                        <li>OpenSimulator, our 3D virtual environment research platform</li>
+                        <li>OpenSimulator, our platform for 3D virtual environment research</li>
                         <li><b>Experiment 1: Systematic study of unreasonable client behavior</b></li>
                         <li>Experiment 2: Systematic study of server performance impact upon user login.</li>
+                        <li>Next Steps and Conclusion: Future research directions for improving performance of virtual environment systems</li>
                     </ul>
                 </section>
 
@@ -190,16 +192,15 @@
 					</aside>         
                 </section>
 
-
                 <section>
                     <h4>Experiment 1 Motivation: Unreasonable client behavior in a virtual conference setting</h4>
-                    <p><b>Engineering Solution:</b> Discard agent update packets with insignificant position update values.</p>
+                    <p><b>Engineering Solution:</b> Added filter <i>early</i> in processing stage to discard agent update packets with insignificant position update values.</p>
                     <img height="100" src="img/unstable_icon.png"><img height="100" src="img/exp_1_motivation_filter.png">
                 </section>
 
                 <section>
                     <h4>Experiment 1 Motivation: Unreasonable client behavior in a virtual conference setting</h4>
-                    <blockquote>RQ-1. How can virtual environments mitigate unreasonable behavior from clients?</blockquote>
+                    <blockquote>Q1. How can virtual environments mitigate unreasonable behavior from clients?</blockquote>
                 </section>
 
                 <section>
@@ -207,40 +208,60 @@
                 <ol>
                     <li><b>To simulate conference,</b> users enter scene and sit down</li>
                     <li><b>To control client behavior,</b> used synthetic client bots</li>
-                    <li><b>To control outside factors,</b> built barebones environment</li>
+                    <li><b>To eliminate noise,</b> built barebones environment</li>
                     <li><b>To measure performance impact,</b> measured steady-state server load</li>
+                    <li><b>To collect data,</b> used OpenSimulator internal monitoring framework</li>
                 </ol>
+
+                <aside class="notes">
+                    sweet spot between emulating user behavior and eliminating enough noise to systematically study behavior
+                </aside>
+
                 </section>
 
                 <section>
                 <h4>Experiment 1: Experiment Design</h4>
-                <img height="300" src="img/loadtest.jpg"><img height="300" src="img/impact_bots_sitting.png">
+                <p>Sitting down removes a user from the physics simulation.</p>
+                <div style="display: inline-block;"><b>OpenSim Load Test</b><br><img height="275" src="img/loadtest.jpg"></div>
+                <div style="display: inline-block;"><b>Our Experiment</b><br><img height="275" src="img/impact_bots_sitting.png"></div>
                 </section>
 
-TODO Spike should go down
-
                 <section>
-                <h4>Experiment 1: Exploring Client Behavior - Findings</h4>
-                <p>Discarding insignificant updates decreases OpenSim server load by at least 24%.</p>
-                <!-- TODO show network pictures... -->
+                <h4>Experiment 1: Findings - Server Load</h4>
                 <div style="display: inline-block;"><img height="400" src="img/annotated_res.png"></div><br/>
                 </section>
 
                 <section>
-                <h4>Experiment 1: Exploring Client Behavior - Lessons Learned</h4>
+                <h4>Experiment 1: Findings - Agent Update Packets</h4>
+                <div style="display: inline-block;"><img height="400" src="img/ReceivedBig.png"></div>
+                </section>
+
+                <section>
+                <h4>Experiment 1: Findings - Agent Update Packets</h4>
+                <div style="display: inline-block;"><img height="400" src="img/ProcessedBig.png"></div>
+                </section>
+
+                <section>
+                <h4>Experiment 1: Findings - Agent Update Packets</h4>
+                <div style="display: inline-block;"><img height="400" src="img/SentBigger.png"></div>
+                </section>
+
+                <section>
+                <h4>Experiment 1: Lessons Learned</h4>
                 <ul>
                     <li>Our experiments confirm that filtering optimization worked.</li> <!-- measurable significant performance impact -->
                     <li>Initial agent processing code is a critical code path.</li>
                     <li>Shows one strategy by which virtual environment servers can mitigate unreasonable client behavior.</li>
                 </ul>
                 </section>
-TODO sweet spot between emulating user behavior and eliminating enough noise to systematically study behavior.
+
                <section>
                     <h4>Agenda</h4>
                     <ul>
-                        <li>OpenSimulator, our 3D virtual environment research platform</li>
+                        <li>OpenSimulator, our platform for 3D virtual environment research</li>
                         <li>Experiment 1: Systematic study of unreasonable client behavior</li>
-                        <li><b>Experiment 2: Systematic study of server performance impact upon user login.</b></li>
+                        <li><b>Experiment 2: Systematic study of server performance impact upon user login</b></li>
+                        <li>Next Steps and Conclusion: Future research directions for improving performance of virtual environment systems</li>
                     </ul>
                 </section>
 
@@ -258,13 +279,7 @@ TODO sweet spot between emulating user behavior and eliminating enough noise to 
                     <li>Server checks permissions, then sends scene and inventory to client.</li>
                     <li>Client viewer loads scene and inventory.</li>
                 </ol>
-                </section>
-
-Effect of avatar complexity, scene, complexity
-
-Add picture of intermediate server
-
-Clear up image 
+                </section> 
 
                 <section>
                 <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Experiment Design</h4>
@@ -274,11 +289,6 @@ Clear up image
                     <li>Clear cache - user in each experiment enters a "new" scene</li>
                     <li>Control complexity of the experiment - measure load of a single user</li> As simple as possible while still being significant
                 </ul>
-                </section>
-
-                g<section>              
-                    <h4>Experiment 2: Performance Factors - Inventories</h4>
-                    <img height="300" src="img/inventories.png">
                 </section>
 
                 <section>              
@@ -301,20 +311,29 @@ Clear up image
                     <img height="300" src="img/simulation-server-local-inventory.png">
                 </section>
 
-                <section>
-                    <h4>Experiment 2: Findings</h4>
-                    <p>Inventory size had a significant impact on server load.</hp>
+                <section>              
+                    <h4>Experiment 2: Performance Findings - Inventories</h4>
+                    <p>TODO</p>
                 </section>
 
                 <section>              
-                    <h4>Experiment 2: User Login Performance - Adding Dedicated Server</h4>
-                    <p>
+                    <h4>Experiment 2: Performance Findings - Avatars</h4>
+                    <p>TODO</p>
+                </section>
+
+                <section>              
+                    <h4>Experiment 2: Performance Findings - Scenes</h4>
+                    <p>TODO</p>
+                </section>
+
+                <section>              
+                    <h4>Experiment 2: Follow-Up Study Adds Dedicated Inventory Server</h4>
                     <img height="300" src="img/simulation-server-dedicated-inventory.png">
                 </section>                          
 
                 <section>
-                <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Findings</h4>
-                <img height="300" src="img/organized_by_inventory_light.png">            
+                <h4>Experiment 2: Findings of Follow-up Study with Dedicated Server</h4>
+                <img height="300" src="img/organized_by_inventory.png">            
                 </section>
 
                 <section>
@@ -331,23 +350,43 @@ Clear up image
                 </ul>
                 </section>
 
-By performing a systematic study, we've pinpointed.
-Architectural design
-Value of systematic study
- 
-Bring back the beginning to the end
+               <section>
+                    <h4>Agenda</h4>
+                    <ul>
+                        <li>OpenSimulator, our platform for 3D virtual environment research</li>
+                        <li>Experiment 1: Systematic study of unreasonable client behavior</li>
+                        <li>Experiment 2: Systematic study of server performance impact upon user login</b></li>
+                        <li><b>Next Steps and Conclusion: Future research directions for improving performance of virtual environment systems</b></li>
+                    </ul>
+                </section>
 
-Research theme - performance of virtual environment users - server more users for the same amount of cycles
-improve performance of virtual environment servers
-zoom in on concrete questions of performance
-bridge - what's next
-magda & nalini: "why"
-answer question by listening - understand the question - "if I understand correctly..."
+                <section>
+                    <h4>Research Motivation</h4>
+                    <blockquote>What techniques can be used to improve performance of virtual environment servers?</blockquote>
+                    
+                    <p class="fragment zoom-in" style="text-align: left;">&#x2713; Systematic studies of mitigation strategies for unreasonable client resource demands.<p>
+                    <p class="fragment zoom-in" style="text-align: left;"><b>Next:</b> Automating systematic performace studies of virtual environment systems<p>  
+                </section>                
+
+                <section>
+                    <h4>Future Work: Automating systematic performace studies of virtual environment servers</h4>
+                    <ul>
+                        <li>Synthetic load test clients that cause realistic server load</li>
+                        <li>Automated systematic study workflows</li>
+                        <li>Record and replay capability for virtual environment testing<br/>(e.g., Selenium for web applications <i>[Bruns et. al., 2009; Holmes & Kellogg, 2006]</i>)</li>
+                    </ul>
+
+                    <aside class="notes">
+                        trade-off between automation and realism<br/>
+                        global distribution of clients
+					</aside>
+                </section>
 
                 <section>
                     <h4>Conclusions</h4>
                     <ul>
-                        <li>Experiment design for the study of real-time multi-user virtual environments isn't easy.</li>
+                        <li>Virtual environment experiment design isn't easy!</li>
+                        <li>Systematic performance studies help pinpoint performance issues.</li>
                         <li>Critical code paths in virtual environments can have significant performance impact.</li>
                         <li>Automated techniques needed to address manual overhead of virtual environment experiments.</li>
                     </ul>
