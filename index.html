@@ -45,6 +45,15 @@
                 <img height="64" src="img/mondego-banner.png"><img height="64" src="img/isr.jpeg" style="margin-left: 0.5em;">
                 </section>
 
+                TODO Advancement Talk
+                TODO noise elimination - get to the core of things
+                TODO slide that explains steps
+                TODO insignificant updates eventually eliminated
+                TODO internal monitoring framework
+                TODO packet graphs
+                As part of the statistics interval, T-tests
+         
+
                 <section>
                     <h4>Virtual environments are online platforms where people can work, play, socialize, and build.</h4>
                     <div style="display: inline-block;"><img height="250" src="img/lopes2013conference.png"></div>
@@ -208,6 +217,8 @@
                 <img height="300" src="img/loadtest.jpg"><img height="300" src="img/impact_bots_sitting.png">
                 </section>
 
+TODO Spike should go down
+
                 <section>
                 <h4>Experiment 1: Exploring Client Behavior - Findings</h4>
                 <p>Discarding insignificant updates decreases OpenSim server load by at least 24%.</p>
@@ -216,14 +227,14 @@
                 </section>
 
                 <section>
-                <h4>Experiment 1: Exploring Client Behavior - Findings</h4>
+                <h4>Experiment 1: Exploring Client Behavior - Lessons Learned</h4>
                 <ul>
-                    <li>Behavior in our experiments confirms that filtering optimization worked.</li>
+                    <li>Our experiments confirm that filtering optimization worked.</li> <!-- measurable significant performance impact -->
                     <li>Initial agent processing code is a critical code path.</li>
                     <li>Shows one strategy by which virtual environment servers can mitigate unreasonable client behavior.</li>
                 </ul>
                 </section>
-
+TODO sweet spot between emulating user behavior and eliminating enough noise to systematically study behavior.
                <section>
                     <h4>Agenda</h4>
                     <ul>
@@ -243,11 +254,17 @@
                 <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Login Steps</h4>
                 <ol>
                     <li>User enters environment through client viewer.</li>
-                    <li>Client requests permissions, scene and inventory from server</li>
+                    <li>Client requests scene and inventory from server</li>
                     <li>Server checks permissions, then sends scene and inventory to client.</li>
                     <li>Client viewer loads scene and inventory.</li>
                 </ol>
                 </section>
+
+Effect of avatar complexity, scene, complexity
+
+Add picture of intermediate server
+
+Clear up image 
 
                 <section>
                 <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Experiment Design</h4>
@@ -255,8 +272,13 @@
                     <li>Three Factors: Inventory Size, Avatar Complexity, Scene Complexity</li>
                     <li>Measure server load for 10 minutes after user login.</li>
                     <li>Clear cache - user in each experiment enters a "new" scene</li>
-                    <li>Control noise - measure load of a single user</li>
+                    <li>Control complexity of the experiment - measure load of a single user</li> As simple as possible while still being significant
                 </ul>
+                </section>
+
+                g<section>              
+                    <h4>Experiment 2: Performance Factors - Inventories</h4>
+                    <img height="300" src="img/inventories.png">
                 </section>
 
                 <section>              
@@ -280,8 +302,8 @@
                 </section>
 
                 <section>
-                    <h4>Experiment 2: Inventory size had a significant impact on server load.</h4>
-                    
+                    <h4>Experiment 2: Findings</h4>
+                    <p>Inventory size had a significant impact on server load.</hp>
                 </section>
 
                 <section>              
@@ -292,7 +314,6 @@
 
                 <section>
                 <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Findings</h4>
-                Moving inventory retrieval to dedicated server reduced baseline performance during login by 14%.<br/>
                 <img height="300" src="img/organized_by_inventory_light.png">            
                 </section>
 
@@ -310,6 +331,18 @@
                 </ul>
                 </section>
 
+By performing a systematic study, we've pinpointed.
+Architectural design
+Value of systematic study
+ 
+Bring back the beginning to the end
+
+Research theme - performance of virtual environment users - server more users for the same amount of cycles
+improve performance of virtual environment servers
+zoom in on concrete questions of performance
+bridge - what's next
+magda & nalini: "why"
+answer question by listening - understand the question - "if I understand correctly..."
 
                 <section>
                     <h4>Conclusions</h4>
