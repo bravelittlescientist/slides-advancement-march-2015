@@ -152,11 +152,24 @@
 
                 <section>
                     <section>
-                        TODO
+                        <h4>Related Virtual Environment Research: Challenges</h4>
+                        <ul>                        
+                            <li>Virtual environment client viewers are less realistic than graphics application software such as 3D modeling <i>[Dionisio et al., 2013]</i></li>  
+                            <li>User load patterns in virtual environments are unpredictable <i>[Valadares & Lopes, 2014]</i></li>
+                            <li>Many existing virtual environment systems have client-server architectures - limits scalability, creates single point of failure <i>[Valadares & Lopes, 2014]</i></li>
+                            <li>Seamless 3D virtual web hindered by lack of virtual environment interoperability <i>[Thompson, 2011]</i></li>
+                            <li>Despite challenges, high levels of participant immersion and low expense levels relative to real-life venues <i>[Clark-Casey, 2013; Djorgovski et al., 2010]</i></li>
+                        </ul>
                     </section>
-
                     <section>
-                        TODO
+                        <h4>Related Virtual Environment Research: Measurement</h4>
+                        <ul>
+                            <li>Streaming media, fast movement, inter-server movement degrades network performance in Second Life <i>[Kinicki & Claypool, 2008; Fernandes et. al., 2007]</i></li>
+                             <li>Complex virtual artifacts, such as simulated fabric and fluids, decrease OpenSimulator server performance <i>[Kumar et al., 2008, Liu et. al., 2010]</i></li>
+                            <li>Large quantities of users and/or interactive objects impact OpenSimulator performance <i>[Bowman et. al., 2010]</i></li>
+                            <li>OpenSimulator not able to support large streams of astrophysics input data <i>[Djorgovski et. al., 2010]</i></li>
+                            <li>Transformation of 3D user-generated content is performance-intensive <i>[Terrace et. al., 2012]</i></li>
+                        </ul>           
                     </section>
                 </section>
 
@@ -174,6 +187,7 @@
                 <section>
                     <h4>Experiment 1 Motivation: Unreasonable client behavior in a virtual conference setting</h4>
                     <p><b>Observation:</b> Server load increased when certain clients entered virtual environment.</p>
+                    
                 </section>
 
                 <section>
@@ -194,12 +208,8 @@
                 </section>
 
                 <section>
-                    <h4>Experiment 1 Motivation: Unreasonable client behavior in a virtual conference setting</h4>
-                    <blockquote>Q1. How can virtual environments mitigate unreasonable behavior from clients?</blockquote>
-                </section>
-
-                <section>
                 <h4>Experiment 1: Experiment Design</h4>
+                
                 <ol>
                     <li><b>To control client behavior,</b> used synthetic client bots</li>
                     <li><b>To simulate conference,</b> users enter scene and sit down</li>
@@ -207,23 +217,30 @@
                     <li><b>To measure performance impact,</b> measured steady-state server load</li>
                     <li><b>To collect data,</b> used OpenSimulator internal monitoring framework</li>
                 </ol>
-
+                
+                <p><i>[Gabrielova & Lopes, 2014]</i></p>
                 <aside class="notes">
                     sweet spot between emulating user behavior and eliminating enough noise to systematically study behavior<br/>
                     Sitting down removes a user from the physics simulation
                 </aside>
-
                 </section>
 
                 <section>
-                <h4>Experiment 1: Experiment Design</h4>
+                <h4>Experiment 1: Experiment Setup</h4>
                 <div style="display: inline-block;"><b>OpenSim Load Test</b><br><img height="300" src="img/loadtest.jpg"></div>
                 <div style="display: inline-block;"><b>Our Experiment</b><br><img height="300" src="img/impact_bots_sitting.png"></div>
                 </section>
 
                 <section>
-                <h4>Experiment 1: Experiment Setup</h4>
-                <img src="img/experiment.png">
+                    <h4>Experiment 1: Experiment Steps</h4>
+            
+                    <ul>
+                        <li>Sets of 10, 50, 100, and 200 synthetic client bots <i>(pCampBot [Clark-Casey, 2013])</i></li>
+                        <li>OpenSimulator region with 256 cubes for sitting</li>
+                        <li>3 scripted behaviors: baseline stable, unfiltered unstable, filtered stable</li>
+                        <li>Bots logged in by script and directed to sit</li>
+                        <li>Collected 3 30-minute login sessions for each of 12 configurations</li>
+                    </ul>
                 </section>
 
                 <section>
@@ -273,6 +290,10 @@
 
                 <section>
                 <h4>Experiment 2: Exploring Performance Impact <br/>of User Login</h4>
+                <p>User entrance into a virtual enviroment (both teleportation and login) heavily impacts network traffic <i>[Fernandes et. al., 2007; Kinicki & Claypool, 2008]</i></p>
+                </section>
+                <section>
+                <h4>Experiment 2: Exploring Performance Impact <br/>of User Login</h4>
                 <img src="img/loadspike.png">
                 </section>
 
@@ -286,35 +307,41 @@
                 <ul>
                     <li>Independent Variables: Scene Complexity, Avatar Complexity, Inventory Size</li>
                     <li>Dependent Variable: Privileged Processor Time</li>
-                    <li>Clear cache - user in each experiment enters a "new" scene</li>
-                    <li>Control complexity of the experiment - measure load of a single user</li>
+                    <li>Measure performance when user enters a scene with no cached assets</li>
+                    <li>To control complexity of the experiment, measure load of a single user</li>
+                    <li>To control simulation time, limit variables to light and heavy assets</li>
                 </ul>
 
                     <aside class="notes">
-                        As simple as possible while still being significant
+                        As simple as possible while still being significant, each light & heavy
 					</aside>
                 </section>
 
                 <section>
                     <section>                
-                        <h4>Experiment 2: Experiment Setup</h4>
-                        <ul>
-                            <li>TODO</li>
-                        </ul>
+                        <h4>Experiment 2: Experiment Steps</h4>
+                        <ol>
+                            <li>Initiate monitoring framework</li>
+                            <li>Load scene file into OpenSimulator server (e.g., Light Scene)</li>
+                            <li>Log in account on client viewer on UCI network (e.g., Light Avatar with Heavy Inventory)</li>
+                            <li>40 experiments: 5x 10 minutes for each combination of avatar, scene, and inventory complexity</li>
+                            <li>After 10-minute timer, clear client viewer cache</li>
+                            <li>Restart client viewer for next experiment</li> 
+                            <li>After all experiments in a scene, back-up server log for mining</li>     
+                        </ol>
+
+                        <aside class="notes">
+                            Avatar (136, 183), Inventory (17, 9K), Scene (38KB, 177 MB)
+					    </aside>
                     </section>
 
                     <section>              
-                        <h4>Experiment 2: Independent Variables - Inventories</h4>
-                        <img height="300" src="img/inventories.png">
-                    </section>
-
-                    <section>              
-                        <h4>Experiment 2: Independent Variables - Avatars</h4>
+                        <h4>Experiment 2: Avatars</h4>
                         <img height="300" src="img/ruth-char.png"><img height="300" src="img/alien-char.png">
                     </section>
 
                     <section>              
-                        <h4>Experiment 2: Independent Variables - Scenes</h4>
+                        <h4>Experiment 2: Scenes</h4>
                         <img height="200" src="img/basic-scene_001.png"><img height="200" src="img/reticulation.png">
                     </section>
                 </section>
@@ -347,7 +374,7 @@
                 <section>
                 <h4>Experiment 2: Exploring Performance Impact of User Login - Findings</h4>
                 <ul>
-                    <li>Manual overhead of realistic virtual environment experiments is heavy.</li>
+                    <li>Manual overhead of realistic virtual environment experiments is heavy (13.3+ hours simulation time analyzed) - see also, <i>[Fernandes et. al., 2007; Kinicki & Claypool, 2008]</i></li>
                     <li>Systematic study pinpointed underlying system bug.</li>
                 </ul>
                 </section>
