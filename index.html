@@ -119,7 +119,7 @@
                     <h4>OpenSimulator Client Updates</h4> 
                     <p>Clients send streams of updates to simulation server.<p>
                     <div style="display: inline-block; margin-right: 1em; vertical-align: middle;">
-                        <img width="500" style="margin: 0; padding: 0;" src="img/packetfull1.png">
+                        <img src="img/packetfull1.png">
                     </div>
                 </section>
 
@@ -127,7 +127,7 @@
                     <h4>OpenSimulator Client Updates</h4> 
                     <p>Clients send streams of updates to simulation server.<p>
                     <div style="display: inline-block; margin-right: 1em; vertical-align: middle;">
-                        <img width="500" style="margin: 0; padding: 0;" src="img/packetfull2.png">
+                        <img src="img/packetfull2.png">
                     </div>
                 </section>
         
@@ -135,7 +135,7 @@
                     <h4>OpenSimulator Client Updates</h4> 
                     <p>Clients send streams of updates to simulation server.<p>
                     <div style="display: inline-block; margin-right: 1em; vertical-align: middle;">
-                        <img width="500" style="margin: 0; padding: 0;" src="img/packetsfull3.png">
+                        <img src="img/packetsfull3.png">
                     </div>
                 </section>
                 
@@ -148,6 +148,16 @@
                         <li>Experiment 2: Systematic study of server performance impact upon user login.</li>
                         <li>Next Steps and Conclusion: Future research directions for improving performance of virtual environment systems</li>
                     </ul>
+                </section>
+
+                <section>
+                    <section>
+                        TODO
+                    </section>
+
+                    <section>
+                        TODO
+                    </section>
                 </section>
 
                 <section>
@@ -169,7 +179,7 @@
                 <section>
                     <h4>Experiment 1 Motivation: Unreasonable client behavior in a virtual conference setting</h4>
                     <p><b>Cause:</b> Clients sent update streams to server with tiny position changes.</p>
-                    <img height="100" src="img/unstable_icon.png"><img height="100" src="img/unstable_example.png">
+                    <img height="150" src="img/unstable_icon.png"><img height="150" src="img/unstable_example.png">
                     <aside class="notes">
 					    At best, floating point issues in client implementation.
                         At worst, malicious client.
@@ -180,7 +190,7 @@
                 <section>
                     <h4>Experiment 1 Motivation: Unreasonable client behavior in a virtual conference setting</h4>
                     <p><b>Solution:</b> Added filter <i>early</i> in processing stage to discard agent update packets with insignificant position update values.</p>
-                    <img height="100" src="img/unstable_icon.png"><img height="100" src="img/exp_1_motivation_filter.png">
+                    <img height="150" src="img/unstable_icon.png"><img height="150" src="img/exp_1_motivation_filter.png">
                 </section>
 
                 <section>
@@ -206,13 +216,13 @@
                 </section>
 
                 <section>
-                <h4>Experiment 1: Experiment Setting</h4>
+                <h4>Experiment 1: Experiment Design</h4>
                 <div style="display: inline-block;"><b>OpenSim Load Test</b><br><img height="300" src="img/loadtest.jpg"></div>
                 <div style="display: inline-block;"><b>Our Experiment</b><br><img height="300" src="img/impact_bots_sitting.png"></div>
                 </section>
 
                 <section>
-                <h4>Experiment 1: Experiment Configuration</h4>
+                <h4>Experiment 1: Experiment Setup</h4>
                 <img src="img/experiment.png">
                 </section>
 
@@ -222,10 +232,23 @@
                 </section>
 
                 <section>
-                <h4>Experiment 1: Findings - Agent Update Packets</h4>
-                <div style="display: inline-block;"><img height="200" src="img/ReceivedBig.png"></div>
-                <div style="display: inline-block;"><img height="200" src="img/ProcessedBig.png"></div>
-                <div style="display: inline-block;"><img height="200" src="img/SentBigger.png"></div>
+                    <section>                    
+                        <h4>Experiment 1: Findings - Agent Update Packets</h4>
+                        <div style="max-width: 100%">
+                            <img height="200" src="img/ReceivedBig.png">
+                            <img height="200" src="img/ProcessedBig.png">
+                            <img height="200" src="img/SentBigger.png">
+                        </div>
+                    </section>
+                    <section>
+                        <img src="img/ReceivedBig.png">
+                    </section>
+                    <section>
+                        <img src="img/ProcessedBig.png">
+                    </section>                    
+                    <section>
+                        <img src="img/SentBigger.png">
+                    </section>
                 </section>
 
                 <section>
@@ -254,65 +277,78 @@
                 </section>
 
                 <section>
-                <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Experiment Design</h4>
+                <h4>Experiment 2: Experiment Design</h4>
+                <img src="img/simulation-server-local-inventory.png">
+                </section>
+
+                <section>
+                <h4>Experiment 2: Experiment Design</h4>
                 <ul>
-                    <li>Three Factors: Inventory Size, Avatar Complexity, Scene Complexity</li>
-                    <li>Measure server load for 10 minutes after user login.</li>
+                    <li>Independent Variables: Scene Complexity, Avatar Complexity, Inventory Size</li>
+                    <li>Dependent Variable: Privileged Processor Time</li>
                     <li>Clear cache - user in each experiment enters a "new" scene</li>
-                    <li>Control complexity of the experiment - measure load of a single user</li> As simple as possible while still being significant
+                    <li>Control complexity of the experiment - measure load of a single user</li>
                 </ul>
+
+                    <aside class="notes">
+                        As simple as possible while still being significant
+					</aside>
                 </section>
 
-                <section>              
-                    <h4>Experiment 2: Performance Factors - Inventories</h4>
-                    <img height="300" src="img/inventories.png">
-                </section>
+                <section>
+                    <section>                
+                        <h4>Experiment 2: Experiment Setup</h4>
+                        <ul>
+                            <li>TODO</li>
+                        </ul>
+                    </section>
 
-                <section>              
-                    <h4>Experiment 2: Performance Factors - Avatars</h4>
-                    <img height="300" src="img/ruth-char.png"><img height="300" src="img/alien-char.png">
-                </section>
+                    <section>              
+                        <h4>Experiment 2: Independent Variables - Inventories</h4>
+                        <img height="300" src="img/inventories.png">
+                    </section>
 
-                <section>              
-                    <h4>Experiment 2: Performance Factors - Scenes</h4>
-                    <img height="200" src="img/basic-scene_001.png"><img height="200" src="img/reticulation.png">
-                </section>
+                    <section>              
+                        <h4>Experiment 2: Independent Variables - Avatars</h4>
+                        <img height="300" src="img/ruth-char.png"><img height="300" src="img/alien-char.png">
+                    </section>
 
-                <section>              
-                    <h4>Experiment 2: Experiment Setup</h4>
-                    <img height="300" src="img/simulation-server-local-inventory.png">
-                </section>
-
-                <section>              
-                    <h4>Experiment 2: Performance Findings - Inventories</h4>
-                    <p>TODO</p>
-                </section>
-
-                <section>              
-                    <h4>Experiment 2: Performance Findings - Avatars</h4>
-                    <p>TODO</p>
+                    <section>              
+                        <h4>Experiment 2: Independent Variables - Scenes</h4>
+                        <img height="200" src="img/basic-scene_001.png"><img height="200" src="img/reticulation.png">
+                    </section>
                 </section>
 
                 <section>              
                     <h4>Experiment 2: Performance Findings - Scenes</h4>
-                    <p>TODO</p>
+                    <img src="img/scenes_compare.png">
+                </section>                
+
+                <section>              
+                    <h4>Experiment 2: Performance Findings - Avatars</h4>
+                    <img src="img/avatars_compare.png">
                 </section>
 
                 <section>              
-                    <h4>Experiment 2: Follow-Up Study Adds Dedicated Inventory Server</h4>
-                    <img height="300" src="img/simulation-server-dedicated-inventory.png">
+                    <h4>Experiment 2: Performance Findings - Inventories</h4>
+                    <img src="img/inventories_compare.png">
+                </section>
+
+                <section>              
+                    <h4>Experiment 2: Follow-Up Study <br/> with Dedicated Server</h4>
+                    <img src="img/simulation-server-dedicated-inventory.png">
                 </section>                          
 
                 <section>
                 <h4>Experiment 2: Findings of Follow-up Study with Dedicated Server</h4>
-                <img height="300" src="img/organized_by_inventory.png">            
+                <img src="img/organized_by_inventory.png">            
                 </section>
 
                 <section>
                 <h4>Experiment 2: Exploring Performance Impact of User Login - Findings</h4>
                 <ul>
                     <li>Manual overhead of realistic virtual environment experiments is heavy.</li>
-                    <li>One client configuration exhibited unreasonable behavior during some logins.</li>
+                    <li>Systematic study pinpointed underlying system bug.</li>
                 </ul>
                 </section>
 
@@ -385,6 +421,7 @@
                     { src: 'plugin/notes/notes.js', async: true }
                 ]
             });
+            Reveal.configure({ slideNumber: true });
 
         </script>
 
