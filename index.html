@@ -55,27 +55,16 @@
                 </section>
 
                 <section>
-                    <h4>Why research virtual environments?</h4>
-                    <blockquote>Despite growing demand, existing systems do not support vast, seamless virtual environments.</blockquote>
-                </section>
-
-                <section>
                     <h4>Scope: multi-user real-time virtual environments</h4>
                     <ul>
-                        <li>3D virtual environment with many simultaneous users.</li>
+                        <li>3D virtual environments with many simultaneous users.</li>
                         <li>Environment is accessed through client viewer application.</li>
                         <li>User actions are immediately reflected in the environment and distributed to other users.</li>
                     </ul>
-                </section>
 
-                <section>
-                    <h4>Many factors impact virtual environment performance.</h4>
-                    <ul>
-                        <li>Real-time state updates</li>
-                        <li>Underlying hardware and network limitations</li>
-                        <li>Heterogeneous client viewer implementations</li>
-                        <li>Unpredictable user behavior</li>
-                    </ul>
+                    <aside class="notes">
+                        real-time state updates, underlying system limitations, heterogeneous clients, unpredictable user behavior
+					 </aside>
                 </section>
 
                 <section>
@@ -109,6 +98,7 @@
                     <h4>Agenda</h4>
                     <ul>
                         <li><b>OpenSimulator, our platform for 3D virtual environment research</b></li>
+                        <li>Related work in virtual environment performance measurement</li>
                         <li>Experiment 1: Systematic study of unreasonable client behavior</li>
                         <li>Experiment 2: Systematic study of server performance impact upon user login.</li>
                         <li>Next Steps and Conclusion: Future research directions for improving performance of virtual environment systems</li>
@@ -117,19 +107,12 @@
 
                 <section>
                     <h4>OpenSimulator is an open source 3D virtual environment server.</h4>
-                    <div style="display: inline-block;"><img height="300" src="img/lopes2013conference.png"></div>
-                </section>
-
-                <section>
-                    <h4>OpenSimulator Features</h4>
                     <p><i>[OpenSimulator, 2015, http://opensimulator.org/]</i></p>
-                    <ul>
-                        <li>Online multi-user 3D simulation servers</li>
-                        <li>3D virtual environments of variable sizes</li>
-                        <li>Support for multiple clients and protocols</li>
-                        <li>Data management and login services for simulation servers</li>
-                        <li>Real-time physics simulation</li>
-                    </ul>
+                    <img src="img/lopes2013conference.png">
+
+                    <aside class="notes">
+                        scalability to many virtual environment regions, support for multiple clients and protocols, data management services, real-time physics
+					</aside>
                 </section>
 
                 <section>
@@ -155,21 +138,23 @@
                         <img width="500" style="margin: 0; padding: 0;" src="img/packetsfull3.png">
                     </div>
                 </section>
-
-                <section>
-                    <h4>OpenSimulator Client Update - Example Steps</h4>
-                    <ol>
-                        <li>User sits down.</li>
-                        <li>User's client viewer sends updated position to <br/>simulation server.</li>
-                        <li>Server processes update packet.</li>
-                        <li>Server sends update to other users.</li>
-                    </ol>
-                </section>
                 
                 <section>
                     <h4>Agenda</h4>
                     <ul>
                         <li>OpenSimulator, our platform for 3D virtual environment research</li>
+                        <li><b>Related work in virtual environment performance measurement</b></li>
+                        <li>Experiment 1: Systematic study of unreasonable client behavior</li>
+                        <li>Experiment 2: Systematic study of server performance impact upon user login.</li>
+                        <li>Next Steps and Conclusion: Future research directions for improving performance of virtual environment systems</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h4>Agenda</h4>
+                    <ul>
+                        <li>OpenSimulator, our platform for 3D virtual environment research</li>
+                        <li>Related work in virtual environment performance measurement</li>
                         <li><b>Experiment 1: Systematic study of unreasonable client behavior</b></li>
                         <li>Experiment 2: Systematic study of server performance impact upon user login.</li>
                         <li>Next Steps and Conclusion: Future research directions for improving performance of virtual environment systems</li>
@@ -194,7 +179,7 @@
 
                 <section>
                     <h4>Experiment 1 Motivation: Unreasonable client behavior in a virtual conference setting</h4>
-                    <p><b>Engineering Solution:</b> Added filter <i>early</i> in processing stage to discard agent update packets with insignificant position update values.</p>
+                    <p><b>Solution:</b> Added filter <i>early</i> in processing stage to discard agent update packets with insignificant position update values.</p>
                     <img height="100" src="img/unstable_icon.png"><img height="100" src="img/exp_1_motivation_filter.png">
                 </section>
 
@@ -206,24 +191,29 @@
                 <section>
                 <h4>Experiment 1: Experiment Design</h4>
                 <ol>
-                    <li><b>To simulate conference,</b> users enter scene and sit down</li>
                     <li><b>To control client behavior,</b> used synthetic client bots</li>
+                    <li><b>To simulate conference,</b> users enter scene and sit down</li>
                     <li><b>To eliminate noise,</b> built barebones environment</li>
                     <li><b>To measure performance impact,</b> measured steady-state server load</li>
                     <li><b>To collect data,</b> used OpenSimulator internal monitoring framework</li>
                 </ol>
 
                 <aside class="notes">
-                    sweet spot between emulating user behavior and eliminating enough noise to systematically study behavior
+                    sweet spot between emulating user behavior and eliminating enough noise to systematically study behavior<br/>
+                    Sitting down removes a user from the physics simulation
                 </aside>
 
                 </section>
 
                 <section>
-                <h4>Experiment 1: Experiment Design</h4>
-                <p>Sitting down removes a user from the physics simulation.</p>
-                <div style="display: inline-block;"><b>OpenSim Load Test</b><br><img height="275" src="img/loadtest.jpg"></div>
-                <div style="display: inline-block;"><b>Our Experiment</b><br><img height="275" src="img/impact_bots_sitting.png"></div>
+                <h4>Experiment 1: Experiment Setting</h4>
+                <div style="display: inline-block;"><b>OpenSim Load Test</b><br><img height="300" src="img/loadtest.jpg"></div>
+                <div style="display: inline-block;"><b>Our Experiment</b><br><img height="300" src="img/impact_bots_sitting.png"></div>
+                </section>
+
+                <section>
+                <h4>Experiment 1: Experiment Configuration</h4>
+                <img src="img/experiment.png">
                 </section>
 
                 <section>
@@ -233,17 +223,9 @@
 
                 <section>
                 <h4>Experiment 1: Findings - Agent Update Packets</h4>
-                <div style="display: inline-block;"><img height="400" src="img/ReceivedBig.png"></div>
-                </section>
-
-                <section>
-                <h4>Experiment 1: Findings - Agent Update Packets</h4>
-                <div style="display: inline-block;"><img height="400" src="img/ProcessedBig.png"></div>
-                </section>
-
-                <section>
-                <h4>Experiment 1: Findings - Agent Update Packets</h4>
-                <div style="display: inline-block;"><img height="400" src="img/SentBigger.png"></div>
+                <div style="display: inline-block;"><img height="200" src="img/ReceivedBig.png"></div>
+                <div style="display: inline-block;"><img height="200" src="img/ProcessedBig.png"></div>
+                <div style="display: inline-block;"><img height="200" src="img/SentBigger.png"></div>
                 </section>
 
                 <section>
@@ -259,6 +241,7 @@
                     <h4>Agenda</h4>
                     <ul>
                         <li>OpenSimulator, our platform for 3D virtual environment research</li>
+                        <li>Related work in virtual environment performance measurement</li>
                         <li>Experiment 1: Systematic study of unreasonable client behavior</li>
                         <li><b>Experiment 2: Systematic study of server performance impact upon user login</b></li>
                         <li>Next Steps and Conclusion: Future research directions for improving performance of virtual environment systems</li>
@@ -267,19 +250,8 @@
 
                 <section>
                 <h4>Experiment 2: Exploring Performance Impact <br/>of User Login</h4>
-                <b>Goal:</b> Understanding why the entrance of a user into a virtual environment is such a heavy process.
-                <img height="300" src="img/loadspike.png">
+                <img src="img/loadspike.png">
                 </section>
-
-                <section>
-                <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Login Steps</h4>
-                <ol>
-                    <li>User enters environment through client viewer.</li>
-                    <li>Client requests scene and inventory from server</li>
-                    <li>Server checks permissions, then sends scene and inventory to client.</li>
-                    <li>Client viewer loads scene and inventory.</li>
-                </ol>
-                </section> 
 
                 <section>
                 <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Experiment Design</h4>
@@ -337,12 +309,6 @@
                 </section>
 
                 <section>
-                <h4>Experiment 2: Exploring Performance Impact <br/>of User Login - Findings</h4>
-                For users with heavy inventory, server loads decreased by 63.9% - 88.9% after dedicated server was added.<br/>
-                <img height="300" src="img/organized_by_inventory_heavy.png">             
-                </section>
-
-                <section>
                 <h4>Experiment 2: Exploring Performance Impact of User Login - Findings</h4>
                 <ul>
                     <li>Manual overhead of realistic virtual environment experiments is heavy.</li>
@@ -354,6 +320,7 @@
                     <h4>Agenda</h4>
                     <ul>
                         <li>OpenSimulator, our platform for 3D virtual environment research</li>
+                        <li>Related work in virtual environment performance measurement</li>
                         <li>Experiment 1: Systematic study of unreasonable client behavior</li>
                         <li>Experiment 2: Systematic study of server performance impact upon user login</b></li>
                         <li><b>Next Steps and Conclusion: Future research directions for improving performance of virtual environment systems</b></li>
@@ -365,8 +332,17 @@
                     <blockquote>What techniques can be used to improve performance of virtual environment servers?</blockquote>
                     
                     <p class="fragment zoom-in" style="text-align: left;">&#x2713; Systematic studies of mitigation strategies for unreasonable client resource demands.<p>
-                    <p class="fragment zoom-in" style="text-align: left;"><b>Next:</b> Automating systematic performace studies of virtual environment systems<p>  
                 </section>                
+
+                <section>
+                    <h4>Conclusions</h4>
+                    <ul>
+                        <li>Virtual environment experiment design isn't easy!</li>
+                        <li>Systematic performance studies help pinpoint performance issues.</li>
+                        <li>Critical code paths in virtual environments can have significant performance impact.</li>
+                        <li>Automated techniques needed to address manual overhead of virtual environment experiments.</li>
+                    </ul>
+                </section>
 
                 <section>
                     <h4>Future Work: Automating systematic performace studies of virtual environment servers</h4>
@@ -380,16 +356,6 @@
                         trade-off between automation and realism<br/>
                         global distribution of clients
 					</aside>
-                </section>
-
-                <section>
-                    <h4>Conclusions</h4>
-                    <ul>
-                        <li>Virtual environment experiment design isn't easy!</li>
-                        <li>Systematic performance studies help pinpoint performance issues.</li>
-                        <li>Critical code paths in virtual environments can have significant performance impact.</li>
-                        <li>Automated techniques needed to address manual overhead of virtual environment experiments.</li>
-                    </ul>
                 </section>
             </div>
 
